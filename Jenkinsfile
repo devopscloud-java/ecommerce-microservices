@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         DOCKERHUB_REPO = "yellammam"
-        IMAGE_TAG = "${1.0}"
+        IMAGE_TAG = "${2.0}"
         DOCKER_CREDS = credentials('dockerhub-cred')
     }
     stages {
