@@ -19,6 +19,13 @@ pipeline {
                 sh 'cd payment-service && mvn clean package -DskipTests'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                sh 'mvn sonar:sonar'
+            }
+        }
+    }
 
         stage('Build Docker Images') {
             steps {
