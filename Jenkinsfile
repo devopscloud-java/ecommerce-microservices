@@ -22,7 +22,13 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker compose build'
+                sh """
+                docker build -t $DOCKERHUB_REPO/eureka-service:$IMAGE_TAG eureka-service
+                docker build -t $DOCKERHUB_REPO/api-gateway:$IMAGE_TAG api-gateway
+                docker build -t $DOCKERHUB_REPO/order-service:$IMAGE_TAG order-service
+                docker build -t $DOCKERHUB_REPO/product-service:$IMAGE_TAG product-service
+               
+                """
             }
         }
          
@@ -42,13 +48,12 @@ pipeline {
             }
         }
 
-        stage('Deploy Containers') {
-        steps {
-            sh 'docker compose down --remove-orphans || true'
-            sh 'docker rm -f eureka-service api-gateway order-service payment-service || true'
-            sh 'docker compose up -d'
+        stage('Deploy') {
+            steps {
+                sh 'docker compose down --remove-orphans || true'
+                sh 'docker compose up -d'
+            }
         }
-    }
 
     }
 }
