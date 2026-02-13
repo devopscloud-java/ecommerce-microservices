@@ -7,22 +7,14 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Build JARs') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/devopscloud-java/ecommerce-microservices.git'
+                sh 'cd eureka-service && mvn clean package -DskipTests'
+                sh 'cd api-gateway && mvn clean package -DskipTests'
+                sh 'cd order-service && mvn clean package -DskipTests'
+                sh 'cd payment-service && mvn clean package -DskipTests'
             }
         }
-
-       stage('Build JARs') {
-    steps {
-        sh 'cd eureka-service && mvn clean package -DskipTests'
-        sh 'cd api-gateway && mvn clean package -DskipTests'
-        sh 'cd order-service && mvn clean package -DskipTests'
-        sh 'cd payment-service && mvn clean package -DskipTests'
-    }
-}
-
 
         stage('Build Docker Images') {
             steps {
@@ -32,7 +24,7 @@ pipeline {
 
         stage('Deploy Containers') {
             steps {
-                sh 'docker compose down'
+                sh 'docker compose down || true'
                 sh 'docker compose up -d'
             }
         }
