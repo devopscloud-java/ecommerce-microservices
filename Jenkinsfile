@@ -26,7 +26,7 @@ pipeline {
                 docker build -t $DOCKERHUB_REPO/service-registry-3:$IMAGE_TAG service-registry-3
                 docker build -t $DOCKERHUB_REPO/api-gateway-1:$IMAGE_TAG api-gateway-1
                 docker build -t $DOCKERHUB_REPO/order-service:$IMAGE_TAG order-service
-                docker build -t $DOCKERHUB_REPO/product-service:$IMAGE_TAG product-service
+                docker build -t $DOCKERHUB_REPO/payment-service:$IMAGE_TAG payment-service
                
                 """
             }
@@ -42,7 +42,7 @@ pipeline {
                 docker push $DOCKERHUB_REPO/service-registry-3:$IMAGE_TAG
                 docker push $DOCKERHUB_REPO/api-gateway-1:$IMAGE_TAG
                 docker push $DOCKERHUB_REPO/order-service:$IMAGE_TAG
-                docker push $DOCKERHUB_REPO/product-service:$IMAGE_TAG
+                docker push $DOCKERHUB_REPO/payment-service:$IMAGE_TAG
                 
                 """
             }
