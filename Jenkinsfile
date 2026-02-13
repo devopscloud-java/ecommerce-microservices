@@ -25,18 +25,7 @@ pipeline {
                 sh 'docker compose build'
             }
         }
-         stage('Build Docker Images') {
-            steps {
-                sh """
-                docker build -t $DOCKERHUB_REPO/eureka-service:$IMAGE_TAG eureka-service
-                docker build -t $DOCKERHUB_REPO/api-gateway:$IMAGE_TAG api-gateway
-                docker build -t $DOCKERHUB_REPO/order-service:$IMAGE_TAG order-service
-                docker build -t $DOCKERHUB_REPO/product-service:$IMAGE_TAG product-service
-                
-                """
-            }
-        }
-
+         
         stage('Docker Login & Push') {
             steps {
                 sh '''
