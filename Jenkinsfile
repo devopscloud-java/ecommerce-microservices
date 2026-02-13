@@ -20,9 +20,11 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                sh 'mvn sonar:sonar'
+        steps {
+        withSonarQubeEnv('sonarqube') {
+            withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                sh 'mvn clean verify sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+                }
             }
         }
     }
