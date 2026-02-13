@@ -23,10 +23,12 @@ pipeline {
         }
 
         stage('Deploy Containers') {
-            steps {
-                sh 'docker compose down || true'
-                sh 'docker compose up -d'
-            }
+        steps {
+            sh 'docker compose down --remove-orphans || true'
+            sh 'docker rm -f eureka-service api-gateway order-service payment-service || true'
+            sh 'docker compose up -d'
         }
+}
+
     }
 }
