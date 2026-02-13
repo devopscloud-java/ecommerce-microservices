@@ -9,8 +9,8 @@ pipeline {
 
         stage('Build JARs') {
             steps {
-                sh 'cd eureka-service && mvn clean package -DskipTests'
-                sh 'cd api-gateway && mvn clean package -DskipTests'
+                sh 'cd service-registry-3 && mvn clean package -DskipTests'
+                sh 'cd api-gateway-1 && mvn clean package -DskipTests'
                 sh 'cd order-service && mvn clean package -DskipTests'
                 sh 'cd payment-service && mvn clean package -DskipTests'
             }
