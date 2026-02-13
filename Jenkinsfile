@@ -5,7 +5,7 @@ pipeline {
         maven 'mymaven'
     }
     environment {
-        DOCKERHUB_REPO = "yellammam/ecommerce-app"
+        DOCKERHUB_REPO = "yellammam"
         IMAGE_TAG = "${1.0}"
         DOCKER_CREDS = credentials('dockerhub-cred')
     }
