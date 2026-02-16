@@ -25,6 +25,7 @@ All services are registered with Eureka Server.
 - Java 17
 - Spring Boot
 - Spring Cloud
+- Spring Security
 - Eureka Server (Service Discovery)
 - Spring Cloud Gateway
 - OpenFeign
@@ -69,7 +70,7 @@ All services are registered with Eureka Server.
 ✅ File-based Logging  
 ✅ TraceId & SpanId Logging  
 ✅ Distributed Tracing (Zipkin Ready)
-
+    JWT-Based Authentication & Authorization
 ---
 
 ## 🧪 How to Run
